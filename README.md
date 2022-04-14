@@ -39,6 +39,7 @@ python manage.py collectstatic
 ## Run the server
 
 ```
+.\env\Scripts\activate  
 python manage.py runserver
 ```
 

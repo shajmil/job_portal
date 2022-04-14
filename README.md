@@ -4,12 +4,8 @@ Django Job Portal.
 
 ## Installation 
 
-```
-open terminal and type
-https://github.com/Sany07/Job-Portal.git
-
-or simply download using the url below
-https://github.com/Sany07/Job-Portal.git
+` simply download using the url below
+https://github.com/shajmil/job_portal
 ```
 
 ## Install requirements

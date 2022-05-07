@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
-from django.http import Http404, HttpResponseRedirect, JsonResponse
+from django.http import Http404, HttpResponseRedirect, JsonResponse,HttpResponse
 from django.core.serializers import serialize
 
 
@@ -132,6 +132,9 @@ def single_job_view(request, id):
     }
     return render(request, 'jobapp/job-single.html', context)
 
+
+def upload_resume(request,id):
+    return HttpResponse("<h1>werewreew</h2>")
 
 def search_result_view(request):
     """

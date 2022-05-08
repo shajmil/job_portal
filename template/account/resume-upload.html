@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- HOME -->
+<section class="section-hero overlay inner-page bg-image"
+  style="background-image: url('{% static 'images/hero_1.jpg' %}');" id="home-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-white font-weight-bold">Upload Resume</h1>
+        <div class="custom-breadcrumbs">
+          <a href="{% url 'jobapp:home' %}">Home</a> <span class="mx-2 slash">/</span>
+          <span class="text-white"><strong>upload resume</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="site-section">
+  <form action="{% url 'account:job-resume' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-6">
+        <input type="file" name="resume" class="form-control">
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-primary" type="submit">Upload</button>
+      </div>
+    
+    </div>
+  </form>
+  </div>
+</section>
+
+{% endblock %}

@@ -22,5 +22,6 @@ class BookmarkJobAdmin(admin.ModelAdmin):
     list_display = ('job','user','timestamp')
     list_filter = ['job','user']
 admin.site.register(BookmarkJob,BookmarkJobAdmin)
+admin.site.register(Resume)
 
 

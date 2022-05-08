@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+
 from account.managers import CustomUserManager
 
 JOB_TYPE = (
@@ -24,6 +25,7 @@ class User(AbstractUser):
     gender = models.CharField(choices=JOB_TYPE, max_length=1)
 
 
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
@@ -33,3 +35,5 @@ class User(AbstractUser):
     def get_full_name(self):
         return self.first_name+ ' ' + self.last_name
     objects = CustomUserManager()
+
+

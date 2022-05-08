@@ -67,3 +67,9 @@ class BookmarkJob(models.Model):
 
     def __str__(self):
         return self.job.title
+
+
+
+class Resume(models.Model):
+    user_email = models.CharField(max_length=30)
+    resume = models.CharField(max_length=500)

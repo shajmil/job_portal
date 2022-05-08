@@ -57,6 +57,7 @@
                   <a>Profile</a>
                   <ul class="dropdown">
                     <li><a href="{% url 'account:edit-profile' request.user.id %}">Edit Settings</a></li>
+                    <li><a href="{% url 'account:resume-page' request.user.id %}">Upload Resume</a></li>
                   </ul>
                 </li>
 

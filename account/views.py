@@ -139,6 +139,8 @@ def upload_job_resume(request):
         if request.method == 'POST':
             handle_uploaded_file(request.FILES['resume'])
             Resume.objects.create(user_email=request.user.email, resume=request.FILES['resume'])
+            messages.success(
+              request, 'You are successfully posted your resume! .')
             return redirect('/')
             # return render(request,'account/in.html')
           
@@ -150,8 +152,11 @@ def upload_job_resume(request):
     
 
     except Exception as e:
+        messages.error(
+            request, 'error occurred .')
         
-        print(e)
+        
+        return redirect('/')
 
 
         

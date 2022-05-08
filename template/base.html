@@ -6,6 +6,12 @@
             {% block content %}{% endblock %}
             {% include 'footer.html' %}
             {% include 'scripts.html' %} 
+            <script>
+                  {% for msg in messages %}
+                    swal('{{ msg }}');
+                  {% endfor %}
+                 
+                 </script>
             {% block extra_scripts %} {% endblock %}
       </body>
 </html>

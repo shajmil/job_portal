@@ -35,7 +35,7 @@
           <div class="col-lg-8">
             <span class="text-primary d-block mb-5"><span class="icon-magnet display-1"></span></span>
             <h2 class="mb-4">{{ applicant.get_full_name }}</h2> 
-            <a href="{% static resume %}" class="btn btn-danger btn-sm">view resume</a>
+            <!-- <a href="{% static resume %}" class="btn btn-danger btn-sm">view resume</a> -->
             <p><h3>Email :</h3>{{ applicant.email }}</p>
             <p><h3>Gender :</h3>
                 {% if applicant.gender == 'M' %}

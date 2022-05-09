@@ -71,5 +71,5 @@ class BookmarkJob(models.Model):
 
 
 class Resume(models.Model):
-    user_email = models.CharField(max_length=30)
+    user_email = models.CharField(max_length=30,unique=True)
     resume = models.CharField(max_length=500)

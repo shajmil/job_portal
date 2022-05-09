@@ -7,6 +7,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.http import Http404, HttpResponseRedirect, JsonResponse,HttpResponse
 from django.core.serializers import serialize
+from jobapp.models import Resume
 
 
 from account.models import User
@@ -318,14 +319,43 @@ def delete_bookmark_view(request, id):
 @user_is_employer
 def applicant_details_view(request, id):
 
-    applicant = get_object_or_404(User, id=id)
+    try:
+        applicant = get_object_or_404(User, id=id)
+        resume_file = Resume.objects.get(user_email=applicant)
+        context = {
+                    'applicant': applicant,
+                            'resume' : f'resume/{resume_file.resume}'
 
-    context = {
+        }
+        return render(request, 'jobapp/applicant-details.html', context)
+    except Exception as e:
+                applicant = get_object_or_404(User, id=id)
+                context = {
+                    'applicant': applicant
+                           
 
-        'applicant': applicant
-    }
+        }
 
-    return render(request, 'jobapp/applicant-details.html', context)
+        # print(e)
+        # messages.error(
+        #     request, 'error occurred .')
+        
+        
+                return render(request, 'jobapp/applicant-detail.html', context)
+
+
+
+
+
+
+
+    
+    
+    
+
+
+    
+
 
 
 @login_required(login_url=reverse_lazy('account:login'))

@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from account.forms import *
 from jobapp.permission import user_is_employee 
 from jobapp.models import Resume
+import os.path
 
 
 def get_success_url(request):
@@ -127,18 +128,34 @@ def user_logOut(request):
     return redirect('account:login')
 
 
-def handle_uploaded_file(f):
-    with open('resume/'+f.name, 'wb+') as destination:
+def handle_uploaded_file(f,request):
+
+    ext = f.name.split('.')[-1]
+    new_name = f'{request.user.email}.{ext}'
+    
+
+    with open('static/resume/'+new_name, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
+
+    return new_name
 
 
 def upload_job_resume(request):
 
     try:
         if request.method == 'POST':
-            handle_uploaded_file(request.FILES['resume'])
-            Resume.objects.create(user_email=request.user.email, resume=request.FILES['resume'])
+            new_name = handle_uploaded_file(request.FILES['resume'],request)
+            print(new_name)
+            found = Resume.objects.filter(user_email=request.user.email).exists()
+            if found:
+                exist_record = Resume.objects.get(user_email=request.user.email)
+                exist_record.resume = new_name 
+                exist_record.save()
+            else:
+                Resume.objects.create(user_email=request.user.email,resume=new_name)
+                 
+
             messages.success(
               request, 'You are successfully posted your resume! .')
             return redirect('/')
@@ -152,6 +169,7 @@ def upload_job_resume(request):
     
 
     except Exception as e:
+        print(e)
         messages.error(
             request, 'error occurred .')
         

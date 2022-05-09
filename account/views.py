@@ -176,6 +176,42 @@ def upload_job_resume(request):
         
         return redirect('/')
 
+        
+def resume_delete(request):
+
+    try:
+        
+            # new_name = handle_uploaded_file(request.FILES['resume'],request)
+            
+            found = Resume.objects.filter(user_email=request.user.email).exists()
+            print(found)
+            if found:
+                exist_record = Resume.objects.get(user_email=request.user.email)
+                 
+                exist_record.delete()
+            
+                 
+
+            messages.success(
+              request, 'You are successfully deleted your resume! .')
+            return redirect('/')
+            # return render(request,'account/in.html')
+          
+            
+
+            
+           
+            
+    
+
+    except Exception as e:
+        print(e)
+        messages.error(
+            request, 'error occurred .')
+        
+        
+        return redirect('/')
+
 
         
     
